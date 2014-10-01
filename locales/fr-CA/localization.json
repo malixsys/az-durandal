@@ -1,5 +1,8 @@
 {
   "title": "aZOO.me",
+  "shell": {
+    "language_switch_label": "English"
+  },
   "home": {
     "tag": "Perdu...<br/>Comment retourner à la maison?"
   }

@@ -1,4 +1,6 @@
-// Generated on 2014-10-01 using generator-durandal 0.1.5
+/*global module:true*/
+/*global require:true*/
+
 'use strict';
 
 module.exports = function (grunt) {

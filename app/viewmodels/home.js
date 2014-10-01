@@ -1,11 +1,8 @@
 'use strict';
 
-define(['knockout', 'durandal/app', 'durandal/system', 'i18next'], function (ko, app, system, i18n) {
+define(['knockout', 'durandal/app', 'durandal/system', 'jquery', 'locale', 'translate'], function (ko, app, system, $, locale, _) {
   var todos = [],
     isLoading = false,
-
-    onButtonClick = function onButtonClick() {
-    },
 
   // Lifecycle Methods
     activate = function activate() {
@@ -42,14 +39,14 @@ define(['knockout', 'durandal/app', 'durandal/system', 'i18next'], function (ko,
       });
     };
 
-  return {
-    tag: i18n.t('home.tag', {escapeInterpolation: false}),
+  var vm = {
+    tag: _('home.tag', {escapeInterpolation: false}),
     todos: todos,
     isLoading: isLoading,
-
-    onButtonClick: onButtonClick,
-
+    locale: locale,
     activate: activate,
     deactivate: deactivate
   };
+
+  return vm;
 });

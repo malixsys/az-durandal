@@ -17,17 +17,13 @@
   "mootools": false,
   // If Dojo Toolkit globals should be predefined.
   "dojo": false,
-  // ECMAScript 5
-
-  // If ES5 syntax should be allowed.
-  "es5": true,
   // Require the "use strict"; pragma.
   "strict": true,
   // If global "use strict"; should be allowed (also enables strict).
   "globalstrict": true,
   // Development
   // If debugger statements should be allowed.
-  "debug": false,
+  "debug": true,
   // If logging globals should be predefined (console, alert, etc.).
   "devel": true,
   // The Good Parts
@@ -127,6 +123,7 @@
   "predef": [
     "requirejs",
     "define",
+    "require",
     "window"
   ]
 }

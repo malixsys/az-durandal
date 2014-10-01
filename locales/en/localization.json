@@ -1,5 +1,8 @@
 {
   "title": "aZOO.me",
+  "shell": {
+    "language_switch_label": "Français"
+  },
   "home": {
     "tag": "If I get lost, how will I get home?"
   }

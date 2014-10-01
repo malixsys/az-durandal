@@ -1,9 +1,15 @@
 'use strict';
 
-define(['plugins/router'], function (router) {
+define(['plugins/router', 'jquery', 'translate', 'locale' ], function (router, $, _, locale) {
   console.log('Loading Shell...');
+  function onStartButtonClicked() {
+    $('#main_wrapper').toggleClass('toggled');
+  }
 
-  return {
+
+  var observable = require('plugins/observable');
+
+  var viewModel = {
     router: router,
 
     activate: function () {
@@ -13,6 +19,21 @@ define(['plugins/router'], function (router) {
       ]).buildNavigationModel();
 
       return router.activate();
+    },
+
+    onStartButtonClicked: onStartButtonClicked,
+
+    language_switch_label: _('shell.language_switch_label'),
+
+    switchLanguage: function () {
+      var current = locale();
+      var next = 'en' === current ? 'fr-CA' : 'en';
+      locale(next);
     }
   };
+
+
+
+
+  return viewModel;
 });
