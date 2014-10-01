@@ -1,37 +1,23 @@
 'use strict';
 
-define(['knockout', 'durandal/app', 'durandal/system'], function (ko, app, system) {
-  var
-  // Public Properties
-    todos = ko.observableArray(),
-    selectedTodo = ko.observable(),
-    isLoading = ko.observable(false),
-
-  // Private Properties
-    messageTitle = 'Application Message',
-    message = 'Hello from your application',
-
-  // Event Handlers
-    onTodoClick = function onTodoClick(note) {
-      app.showMessage(note.content, note.title);
-    },
+define(['knockout', 'durandal/app', 'durandal/system', 'i18next'], function (ko, app, system, i18n) {
+  var todos = [],
+    isLoading = false,
 
     onButtonClick = function onButtonClick() {
-      app.showMessage(message, messageTitle);
     },
 
   // Lifecycle Methods
     activate = function activate() {
-      isLoading(true);
+      isLoading = true;
 
       return loadTodos().then(function (loadedTodos) {
-        todos(loadedTodos);
-        isLoading(false);
+        todos = loadedTodos;
+        isLoading = false;
       });
     },
 
     deactivate = function deactivate() {
-      selectedTodo(null);
     },
 
   // Private Methods
@@ -52,16 +38,15 @@ define(['knockout', 'durandal/app', 'durandal/system'], function (ko, app, syste
               content: 'To create a View using yeoman you could call <strong>$ yo durandal:view.</strong>'
             }
           ]);
-        }, 1500);
+        }, 250);
       });
     };
 
   return {
+    tag: i18n.t('home.tag', {escapeInterpolation: false}),
     todos: todos,
-    selectedTodo: selectedTodo,
     isLoading: isLoading,
 
-    onTodoClick: onTodoClick,
     onButtonClick: onButtonClick,
 
     activate: activate,

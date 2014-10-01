@@ -8,7 +8,8 @@
     "durandal": ">=2.0.0",
     "durandal-almond": "master",
     "json2": "*",
-    "bootstrap-material-design": "*"
+    "bootstrap-material-design": "*",
+    "i18next": "~1.7.4"
   },
   "devDependencies": {
     "mocha": "~1.17.1",

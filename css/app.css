@@ -1,3 +1,37 @@
 body {
   background-color: #FFF;
 }
+
+.index_splash {
+  position: absolute;
+  top: 50%;
+  height: 120px;
+  margin-top: -60px;
+  width:500px;
+  left:50%;
+  margin-left: -250px;
+  text-align: center;
+}
+
+.home_image_div {
+  position: absolute;
+  top: 50%;
+  height: 250px;
+  margin-top: -125px;
+  width:500px;
+  left:50%;
+  margin-left: -250px;
+}
+
+.home_start {
+  position: absolute;
+  top: 2px;
+  right: 8px;
+}
+
+.home_image_div span {
+  max-width:300px;
+  line-height: 24px;
+  display: inline-block;
+  vertical-align: bottom;
+}

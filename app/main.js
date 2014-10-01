@@ -8,10 +8,11 @@ requirejs.config({
     'transitions': '../bower_components/durandal/js/transitions',
     'knockout': '../bower_components/knockout.js/knockout.debug',
     'jquery': '../bower_components/jquery/jquery',
+    'i18next': '../bower_components/i18next/i18next.amd.withJQuery',
     'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap',
     'modernizr': '../bower_components/modernizr/modernizr',
     'ripples': '../bower_components/bootstrap-material-design/scripts/ripples',
-    'material': '../bower_components/bootstrap-material-design/scripts/material',
+    'material': '../bower_components/bootstrap-material-design/scripts/material'
   },
   shim: {
     bootstrap: {
@@ -24,26 +25,47 @@ requirejs.config({
   }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'bootstrap'], function (system, app, viewLocator) {
-  //>>excludeStart("build", true);
-  system.debug(true);
-  //>>excludeEnd("build");
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/binder', 'i18next', 'jquery', 'bootstrap'],
+  function (system, app, viewLocator, binder, i18n, $) {
+    //>>excludeStart("build", true);
+    system.debug(true);
+    //>>excludeEnd("build");
 
-  app.title = "aZOO.me";
+    app.configurePlugins({
+      router: true,
+      dialog: true,
+      widget: true,
+      observable: true
+    });
 
-  app.configurePlugins({
-    router: true,
-    dialog: true,
-    widget: true,
-    observable: true
+    console.log(window.navigator);
+
+    var i18NOptions = {
+      debug: true,
+      detectFromHeaders: false,
+      detectLngFromLocalStorage: true,
+      fallbackLang: window.navigator.languages || ['fr-CA'],
+      lng: (window.navigator.languages && window.navigator.languages[0]) || window.navigator.userLanguage || window.navigator.language || 'fr-CA',
+      ns: 'app',
+      resGetPath: 'locales/__lng__/localization.json',
+      useCookie: false
+    };
+
+    app.start().then(function () {
+      // Replace 'viewmodels' in the moduleId with 'views' to locate the view.
+      // Look for partial views in a 'views' folder in the root.
+      viewLocator.useConvention();
+
+      i18n.init(i18NOptions, function () {
+        //Call localization on view before binding...
+        binder.binding = function (obj, view) {
+          $(view).i18n();
+        };
+
+        app.title = i18n.t('title');
+
+        //Show the app by setting the root view model for our application with a transition.
+        app.setRoot('viewmodels/shell');
+      });
+    });
   });
-
-  app.start().then(function () {
-    // Replace 'viewmodels' in the moduleId with 'views' to locate the view.
-    // Look for partial views in a 'views' folder in the root.
-    viewLocator.useConvention();
-
-    // Show the app by setting the root view model for our application with a transition.
-    app.setRoot('viewmodels/shell');
-  });
-});
