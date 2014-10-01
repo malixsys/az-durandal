@@ -1,3 +1,24 @@
+I# Dependencies
+##########################
+node_modules/
+bower_components/
+packages/
+
+# Temporary directories
+##########################
+temp/
+tmp/
+.tmp/
+.temp/
+
+# Build directories
+##########################
+build/
+bld/
+dist/
+publish/
+.build/
+
 # Logs
 logs
 *.log
