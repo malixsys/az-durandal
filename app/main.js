@@ -55,6 +55,12 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/bin
       // Look for partial views in a 'views' folder in the root.
       viewLocator.useConvention();
 
+ /*       router.useConvention();
+        router.mapNav("movies/show");
+        router.mapNav("movies/add");
+        router.mapNav("movies/details/:id");
+ */
+ 
       i18n.init(i18NOptions, function () {
         //Call localization on view before binding...
         binder.binding = function (obj, view) {
@@ -63,8 +69,10 @@ define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'durandal/bin
 
         app.title = i18n.t('title');
 
-        //Show the app by setting the root view model for our application with a transition.
+        app.adaptToDevice();
+
         app.setRoot('viewmodels/shell');
+        
       });
     });
   });
