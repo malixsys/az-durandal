@@ -115,7 +115,7 @@
   "white": false,
   // Specify indentation.
   "indent": 2,
-  "quotmark": "single",
+//  "quotmark": "single",
   // If the scan should stop on first error.
   "passfail": false,
   // Maximum errors before stopping.
